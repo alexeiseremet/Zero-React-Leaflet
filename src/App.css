@@ -1,0 +1,73 @@
+.dashboard {
+  display: flex;
+  flex: 1 0 0%;
+  height: 100vh;
+  width: 100vw;
+}
+
+.dashboard__left {
+  flex-basis: 25%;
+  max-width: 25%;
+}
+
+.dashboard__right {
+  flex-basis: 75%;
+  max-width: 75%;
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+}
+
+.filter {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+label {
+  display: block;
+  margin: 2px 0;
+  padding: 5px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+input {
+  margin-right: 10px;
+}
+
+.icon,
+.icon--warning::after {
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.icon {
+  display: block;
+  background-image: url(./moving.png);
+  width: 12px;
+  height: 24px;
+}
+
+.icon--warning::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 0;
+  background-image: url("./warning.png");
+  width: 12px;
+  height: 12px;
+}
+
+.leaflet-div-icon {
+  background: none;
+  border: 0;
+}
+
