@@ -11,7 +11,7 @@ class App extends Component {
 
     this.state = {
       hiddenVehicles: [],
-      vehicles      : dataVehicles.slice(0, 50),
+      vehicles      : [],
       mapCenter     : [6.6111, 20.9394],
       mapZoom       : 4
     };
@@ -19,19 +19,20 @@ class App extends Component {
     this.updateHiddenVehicles = this.updateHiddenVehicles.bind(this);
   }
 
-  /** Delay render */
-  recursive = () => {
-    setTimeout(() => {
-      let hasMore = this.state.vehicles.length + 1000 < dataVehicles.length;
-      this.setState((prev) => ({
-        vehicles: dataVehicles.slice(0, prev.vehicles.length + 1000)
-      }));
-      if (hasMore) this.recursive();
-    }, 0);
+  fetchData = () => {
+    Promise.resolve(dataVehicles)
+      .then(data => {
+        this.setState({
+          vehicles: data
+        });
+      });
   };
 
   componentDidMount() {
-    this.recursive();
+    /** Delay fetch data */
+    setTimeout(() => {
+      this.fetchData();
+    }, 100)
   }
 
   updateHiddenVehicles(item) {
