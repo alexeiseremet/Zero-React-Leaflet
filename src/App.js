@@ -36,14 +36,12 @@ class App extends Component {
   }
 
   updateHiddenVehicles(item) {
-    const hiddenVehicles = this.state.hiddenVehicles;
-    let index = hiddenVehicles.indexOf(item);
+    const hiddenVehicles = [...this.state.hiddenVehicles];
+    const index = hiddenVehicles.indexOf(item);
 
-    if (index > -1) {
-      hiddenVehicles.splice(index, 1);
-    } else {
-      hiddenVehicles.push(item);
-    }
+    index > -1
+      ? hiddenVehicles.splice(index, 1)
+      : hiddenVehicles.push(item);
 
     this.setState({hiddenVehicles})
   }
@@ -62,7 +60,7 @@ class App extends Component {
         <div className="dashboard__right">
           <Map center={this.state.mapCenter} zoom={this.state.mapZoom}>
             <TileLayer
-              url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png"
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>'
             />
 

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {divIcon} from 'leaflet';
 import {Marker, Popup} from 'react-leaflet';
 import Cluster from 'react-leaflet-markercluster';
@@ -23,7 +23,7 @@ function MarkerList(props) {
       let tempString = '';
 
       for (let key in vehicle) {
-        tempString += `<li><b>${key}:</b> ${vehicle[key]}</dt>`;
+        tempString += `<li><b>${key}:</b> ${vehicle[key]}</li>`;
       }
 
       return {__html: tempString};
@@ -34,7 +34,7 @@ function MarkerList(props) {
               position={[+vehicle.latitude, +vehicle.longitude]}
               icon={divIcon({html: icon})}>
         <Popup>
-          <ul className="list" dangerouslySetInnerHTML={popupMarkup()}></ul>
+          <ul className="list" dangerouslySetInnerHTML={popupMarkup()}/>
         </Popup>
       </Marker>
     );
