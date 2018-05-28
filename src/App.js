@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Map, TileLayer} from 'react-leaflet';
-import {tbl_vehicles as dataVehicles} from './vehicles.json';
 import Markers from './Markers';
 import Filter from './Filter';
 import './App.css';
@@ -12,6 +11,7 @@ class App extends Component {
     this.state = {
       hiddenVehicles: [],
       vehicles      : [],
+      isLoading     : true,
       mapCenter     : [6.6111, 20.9394],
       mapZoom       : 4
     };
@@ -20,10 +20,12 @@ class App extends Component {
   }
 
   fetchData = () => {
-    Promise.resolve(dataVehicles)
+    fetch('./vehicles.json')
+      .then(res => res.json())
       .then(data => {
         this.setState({
-          vehicles: data
+          vehicles: data.tbl_vehicles,
+          isLoading: false
         });
       });
   };
@@ -54,17 +56,25 @@ class App extends Component {
     return (
       <div className="dashboard">
         <div className="dashboard__left">
-          <Filter vehicles={this.state.vehicles}
-                  updateHiddenVehicles={this.updateHiddenVehicles}/>
+          {
+            this.state.isLoading
+              ? <p>...loading</p>
+              : <Filter vehicles={this.state.vehicles}
+                        updateHiddenVehicles={this.updateHiddenVehicles}/>
+          }
         </div>
         <div className="dashboard__right">
           <Map center={this.state.mapCenter} zoom={this.state.mapZoom}>
             <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              url="//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>'
             />
 
-            <Markers vehicles={activeVehicles}/>
+            {
+              this.state.isLoading
+                ? null
+                : <Markers vehicles={activeVehicles}/>
+            }
           </Map>
         </div>
       </div>
