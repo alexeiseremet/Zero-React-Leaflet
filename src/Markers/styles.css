@@ -1,0 +1,32 @@
+.leaflet-container {
+  width:  100%;
+  height: 100%;
+}
+
+.leaflet-div-icon {
+  background: none;
+  border:     0;
+}
+
+.icon,
+.icon--warning::after {
+  background-repeat: no-repeat;
+  background-size:   contain;
+}
+
+.icon {
+  display:          block;
+  background-image: url(../assets/img/moving.png);
+  width:            12px;
+  height:           24px;
+}
+
+.icon--warning::after {
+  content:          "";
+  position:         absolute;
+  top:              6px;
+  left:             0;
+  background-image: url("../assets/img/warning.png");
+  width:            12px;
+  height:           12px;
+}

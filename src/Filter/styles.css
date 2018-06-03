@@ -1,0 +1,23 @@
+.filter {
+  width:    100%;
+  height:   100%;
+  overflow: auto;
+}
+
+.list {
+  list-style-type: none;
+  margin:          0;
+  padding:         0;
+}
+
+label {
+  display:       block;
+  margin:        2px 0;
+  padding:       5px;
+  border-bottom: 1px solid #eaeaea;
+  cursor:        pointer;
+}
+
+input {
+  margin-right: 10px;
+}
