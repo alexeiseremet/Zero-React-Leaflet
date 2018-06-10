@@ -1,0 +1,8 @@
+.dropzone {
+  height: 100px;
+  width: 100px;
+  display: block;
+  border: 2px dashed #eaeaea;
+  background-size: contain;
+  background-repeat: no-repeat;
+}

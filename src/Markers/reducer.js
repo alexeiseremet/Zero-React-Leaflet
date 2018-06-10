@@ -3,11 +3,11 @@
 // initial state
 const initialState = {};
 
-const App = (state = initialState, action) => {
+const Markers = (state = initialState, action) => {
   switch (action.type) {
     default:
       return state
   }
 };
 
-export default App
+export default Markers
